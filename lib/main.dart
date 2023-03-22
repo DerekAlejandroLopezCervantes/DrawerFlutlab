@@ -4,11 +4,12 @@ void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-  static const String _title = 'Flutter Stateful Clicker Counter';
+  static const String _title = 'DrawerFlutter';
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: _title,
       theme: ThemeData(
         primarySwatch: Colors.blue,
@@ -20,73 +21,98 @@ class MyApp extends StatelessWidget {
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-  // This class is the configuration for the state.
+
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
     return Scaffold(
       appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text('Flutter Demo Click Counter'),
+        title: Text('Act 3 Drawer Lopez'),
+        backgroundColor: const Color(0xff764abc),
       ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
+      drawer: Drawer(
+        child: ListView(
+          // Important: Remove any padding from the ListView.
+          padding: EdgeInsets.zero,
+          children: [
+            const UserAccountsDrawerHeader(
+              // <-- SEE HERE
+              decoration: BoxDecoration(color: const Color(0xff764abc)),
+              accountName: Text(
+                "Derek Alejandro Lopez Cervantes",
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              accountEmail: Text(
+                "a.20308051280515@cbtis128.edu.mx",
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              currentAccountPicture: FlutterLogo(),
             ),
-            Text(
-              '$_counter',
-              style: TextStyle(fontSize: 25),
+            ListTile(
+              leading: Icon(
+                Icons.home,
+              ),
+              title: const Text('Inicio'),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              leading: Icon(
+                Icons.music_note,
+              ),
+              title: const Text('Instrumentos'),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              leading: Icon(
+                Icons.games,
+              ),
+              title: const Text('Juegos'),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              leading: Icon(
+                Icons.person,
+              ),
+              title: const Text('Cuenta'),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              leading: Icon(
+                Icons.store,
+              ),
+              title: const Text('Sucursales'),
+              onTap: () {
+                Navigator.pop(context);
+              },
             ),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
+      body: Center(
+        child: Column(
+          children: [
+            SizedBox(
+              height: 50,
+            ),
+          ],
+        ),
       ),
     );
   }
 }
-
