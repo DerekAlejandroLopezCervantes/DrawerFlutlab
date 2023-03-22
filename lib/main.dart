@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key}) : super(key: key);
   static const String _title = 'DrawerFlutter';
   // This widget is the root of your application.
+  //
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -27,9 +29,11 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  final GlobalKey<ScaffoldState> _key = GlobalKey(); // Create a key
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _key,
       appBar: AppBar(
         title: Text('Act 3 Drawer Lopez'),
         backgroundColor: const Color(0xff764abc),
@@ -125,6 +129,15 @@ class _MyHomePageState extends State<MyHomePage> {
           children: [
             SizedBox(
               height: 50,
+            ),
+            ElevatedButton(
+              onPressed: () {
+                _key.currentState!.openDrawer(); //<-- SEE HERE
+              },
+              child: const Text(
+                'Boton Drawer',
+                style: TextStyle(fontSize: 15),
+              ),
             ),
           ],
         ),
